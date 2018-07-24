@@ -58,7 +58,7 @@
         //Switch statement to change the background colors for the bands upon change
         switch (object.attr('id')) {
             case "ddlFirstBand":
-                setBandColor($("#divFiresultBand"), object);
+                setBandColor($("#divFirstBand"), object);
                 break;
             case "ddlSecondBand":
                 setBandColor($("#divSecondBand"), object);
