@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model ColorResistorCalculator.Models.ResistorColorSelector
+
+<h1 class="text-center">Resistor Color Code Calculator</h1>
+<hr />
+
+<div class="Container">
+    <div class="resistor">
+        <div class="left"></div>
+        <div id="divFiresultBand" class="band"></div>
+        <div id="divSecondBand" class="band"></div>
+        <div id="divThirdBand" class="band"></div>
+        <div id="divFourthBand" class="band"></div>
+        <div class="right"></div>
+    </div>
+    <!--Band Colors Select -->
+
+    <div class="bg-light shadow-lg bg-white rounded mb-5 p-3">
+        <div class="row justify-content-md-center pb-2">
+            <div class="col-sm-12 col-md-3 col-lg-3 text-right">
+                @Html.Label("BandA", "1st Digit", htmlAttributes: new { @class = "BandLabelText" })
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3">
+                @Html.DropDownListFor(b => b.BandNumber , new SelectList(Model.BandNumber, "Key", "Value"), htmlAttributes: new { @class = "form-control selectpicker", id = "ddlFirstBand" })
+            </div>
+        </div>
+        <div class="row justify-content-md-center  pb-2">
+            <div class="col-sm-12 col-md-3 col-lg-3  text-right">
+                @Html.Label("BandB", "2nd Digit", htmlAttributes: new { @class = "BandLabelText" })
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3">
+                @Html.DropDownListFor(b => b.BandNumber, new SelectList(Model.BandNumber, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "ddlSecondBand" })
+            </div>
+        </div>
+        <div class="row justify-content-md-center  pb-2">
+            <div class="col-sm-12 col-md-3 col-lg-3  text-right">
+                @Html.Label("BandC", "Multiplier", htmlAttributes: new { @class = "BandLabelText" })
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3">
+                @Html.DropDownListFor(b => b.NumberMultiplier, new SelectList(Model.NumberMultiplier, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "ddlThirdBand" })
+            </div>
+        </div>
+        <div class="row justify-content-md-center  pb-2">
+            <div class="col-sm-12 col-md-3  col-lg-3 text-right">
+                @Html.Label("BandD", "Tolerance", htmlAttributes: new { @class = "BandLabelText" })
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3  col-lg-2">
+                @Html.DropDownListFor(b => b.ToleranceNumber, new SelectList(Model.ToleranceNumber, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "ddlFourthBand" })
+            </div>
+        </div>
+        <div id="divresult" class="row justify-content-md-center  pb-2">
+            <!--Min Max and Resistor Values-->
+            <div class="row justify-content-md-center  p-3">
+                <div class="col-sm-12  col-md-2  col-lg-2 text-right">
+                    @Html.Label("lblMinResistor", "Min Resistor")
+                </div>
+                <div class="col-sm-12  col-md-2  col-lg-2">
+                    @Html.TextBox("txtMinResistor", "0", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-sm-12  col-md-2  col-lg-2">
+                    @Html.Label("lblMaxResistor", "Max Resistance")
+                </div>
+                <div class="col-sm-12  col-md-2  col-lg-2">
+                    @Html.TextBox("txtMaxResistor", "0", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-sm-12  col-md-2  col-lg-2">
+                    @Html.Label("lblResistorValue", "Resistor Value")
+                </div>
+                <div class="col-sm-12 col-md-2  col-lg-2">
+                    @Html.TextBox("txtResistorValue", "0", htmlAttributes: new { @class = "form-control" })
+                </div>
+
+            </div>
+        </div>
+    <div id="divError"></div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 justify-content-md-center">
+        <p>
+            An electronic color code is used to indicate the values or ratings of electronic components, usually
+            for resistors, but also for capacitors, inductors, diodes and others. A separate code, the 25-pair color
+            code, is used to identify wires in some telecommunications cables. Different codes are used for wire leads
+            on devices such as transformers or in building wiring.
+        </p>
+        <p>
+            Resistors manufactured for military use may also include a fifth band which indicates component failure rate (reliability).
+        </p>
+        <p>
+            Tight tolerance resistors may have three bands for significant figures rather than two, 
+            or an additional band indicating temperature coefficient, in units of ppm/K.
+
+        </p>
+        <p>All coded components have at least two value bands and a multiplier; other bands are optional.
+            <sup><a href="https://en.wikipedia.org/wiki/Electronic_color_code">1</a></sup>
+        </p>
+        <h5>Calculating resistance for a 4-band resistor
+        <sup><a href="https://circuitdigest.com/calculators/resistor-color-code-calculator">2</a></sup></h5>
+        <p>
+            A resistor is identified by its pattern of color of bands. There are 4, 5 and 6 band resistors.
+            To calculate the resistance of a resistor, you can select the appropriate color bands in the below
+            resistor color code calculator.  The following formula respresents how the resistance is calculated.
+        </p>
+        <div class="bg-white col-sm-12 col-md-12 col-lg-12 font-weight-bold font-italic mb-1 pb-0 pl-3 pt-2 rounded shadow-sm">Resistance = ab * c &plusmn; d%</div>
+        <div class="col-sm-12 col-md-10 col-lg-9">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">'a' represents the 1st significant digit, which is the firesult band color of resistor.</li>
+                <li class="list-group-item">'b' represents the 2nd  significant digit, which is the second band color of resistor.</li>
+                <li class="list-group-item">‘c’ represents the 3rd significant digit, which is the third band color of resistor and this is the multiplier value.</li>
+                <li class="list-group-item">‘d’ represents the 4th  significant digit, which is the fourth band color of resistor and this is the tolerance value.  </li>
+
+            </ul>
+            <p>
+                Using this formula, an example for a 4-band calculation with the color bands (red,violet,brown, blue) will be:
+                27 * 10 = 270 ohms with 2.5% tolerance (min: 269.325 Ohms and max: 270.675 Ohms)
+            </p>
+        </div>
+    </div>
+</div>
+
+    <article>
+        <span>References</span><br/>
+        <a href="https://en.wikipedia.org/wiki/Electronic_color_code"><sup>1</sup>Wikipedia</a><br/>
+        <a href="https://circuitdigest.com/calculators/resistor-color-code-calculator"><sup>2</sup>Circuit Digest</a>
+    </article>
+
+
+@section Scripts{
+<script src="~/js/app.js"></script>
+
+}

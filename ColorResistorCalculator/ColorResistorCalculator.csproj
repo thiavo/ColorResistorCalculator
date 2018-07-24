@@ -1,0 +1,59 @@
+
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PackageId>ChristinaVo.ColorResistorCalculator.Core.MVC</PackageId>
+    <IsPackable>true</IsPackable>
+    <Authors>Christina Vo</Authors>
+    <Description>Calculates the resistor for the electronic color code</Description>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>1.0.8</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\bootstrap\.bower.json" />
+    <Content Remove="wwwroot\images\banner1.svg" />
+    <Content Remove="wwwroot\images\banner2.svg" />
+    <Content Remove="wwwroot\css\site.css" />
+    <Content Remove="wwwroot\css\site.min.css" />
+    <Content Remove="appsettings.json" />
+    <Content Remove="Properties\launchSettings.json" />
+    <Content Remove="wwwroot\js\site.min.js" />
+    <Content Remove="wwwroot\js\app.js" />
+    <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="wwwroot\.DS_Store" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\ResistorSelectColors.cs" />
+    <Compile Remove="Controllers\UnitTestResistorCalculator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" />
+    <None Include="Properties\launchSettings.json" />
+    <None Include="wwwroot\js\site.min.js" />
+    <None Include="wwwroot\js\app.js" />
+    <None Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <VersionControlPolicy>
+            <CommitMessageStyle Header="" Indent="" FirstFilePrefix="* " FileSeparator=":&#xA;* " LastFilePostfix=": " LineAlign="2" InterMessageLines="1" IncludeDirectoryPaths="False" Wrap="True" />
+          </VersionControlPolicy>
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
